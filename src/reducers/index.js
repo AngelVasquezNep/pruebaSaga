@@ -1,12 +1,10 @@
 import {combineReducers} from 'redux'
-import hola from './hola'
-import adios from './adios'
 import tracks from './tracks'
+import sauce from './sauce'
 
 const rootReducer = combineReducers({
-  hola,
-  adios,
-  tracks
+  tracks,
+  sauce
 })
 
 export default rootReducer

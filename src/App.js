@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
-import * as actions from './actions'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { tracksActionsCreate } from './reducers/tracks'
 
 class App extends Component {
+  handleSubmit = (event) => {
+    event.preventDefault()
+    this.props.actions.search(event.target.search.value)
+  }
   render() {
-    const {hola, adios, tracks} = this.props
+    const { items, loading:loadingFetchTrack } = this.props.tracks
     return (
       <div className="App">
         <header className="App-header">
@@ -17,25 +21,14 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <form onSubmit={this.handleSubmit}>
+          <input type="text" name="search" defaultValue="Despacito"/>
+          <input type="submit" value="buscar"/>
+        </form>
+        {loadingFetchTrack && <p>Loading...</p> }
         <div>
-          <p>Hola: {hola} </p>
-          <p>Adios: {adios} </p>
-        </div>
-        <button
-          onClick={()=>this.props.actions.hola_action()  }
-          >HOLA</button>
-        <button
-          onClick={()=>this.props.actions.adios_action()  }
-        >ADIOS</button>
-        <button
-          onClick={()=>this.props.actions.hola_async()  }
-        >HOLA ASYNC</button>
-        <button
-          onClick={()=>this.props.actions.fetch_saga()  }
-        >FETCH SAGA</button>
-        <div>
-          {tracks.map((t, index)=>(
-            <div key={index}>{t.name}</div>
+          {items.map((t, index) => (
+            <p key={index}>{t.name}</p>
           ))}
         </div>
       </div>
@@ -44,13 +37,13 @@ class App extends Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  hola: state.hola.msg,
-  adios: state.adios.msg,
   tracks: state.tracks
 })
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actions, dispatch)
+  actions: bindActionCreators({
+    search: tracksActionsCreate.fetchTrackRequest,
+  }, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
