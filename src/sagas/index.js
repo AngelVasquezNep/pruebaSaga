@@ -1,5 +1,5 @@
 import { delay } from 'redux-saga'
-import { put, call, all, takeEvery, takeLatest } from 'redux-saga/effects'
+import { put, call, takeLatest } from 'redux-saga/effects'
 import { tracksActionsTypes, tracksActionsCreate } from '../reducers/tracks'
 
 export function* incrementAsync() {
@@ -9,9 +9,9 @@ export function* incrementAsync() {
 export function* holaSaga() {
   yield console.log("Hola Init Saga")
 }
-function* watchFetchData() {
-  yield takeLatest(tracksActionsTypes.FETCH_TRACK_REQUEST, fetchTrackRequest)
-}
+// function* watchFetchData() {
+//   yield takeLatest(tracksActionsTypes.FETCH_TRACK_REQUEST, fetchTrackRequest)
+// }
 function* fetchTrackRequest({ query }) {
   const response = yield call(fetchMusic, { query })
   if(response.status === 200) {

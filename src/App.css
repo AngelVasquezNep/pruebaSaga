@@ -1,28 +1,103 @@
+* {box-sizing: border-box;}
 .App {
+  display: flex;
+  height: 100vh;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.column-left {
+  height: 100%;
+  width: 250px;
+  box-shadow: 2px 0 1px 0px #393939;
+}
+
+.content {
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.content .form {
+  display: flex;
+  padding: .5rem;
+}
+
+
+
+.input-text {
+  width: 100%;
+  border: none;
+  border-radius: .5rem;
+  border: 1px solid #393939;
+  padding: .5rem;
+  outline: none;
+}
+.input-text:focus {
+  box-shadow: 0 0 2px 2px #1ff;
+}
+
+.btn {
+  border: none;
+  border: 1px solid #333333;
+  outline: none;
+  border-radius: 5px;
+  background: #fff;
+  margin: 0 .5rem;
+  padding: .5rem;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.btn:hover {
+  transform: translateY(-.1rem);
+  background-color: #1ff;
+  box-shadow: 0 2px .5px 0px #333333;
+}
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 0px 0px 0px #333333;
+}
+
+
+
+.reproductor-detail {
+  width: 100%;
+  display: flex;
+  margin: 1rem 0;
+  box-shadow: 0 0 2px 2px #f0efef;
+}
+
+.reproductor-detail .image {
+  width: 200px;
+  box-shadow: 0 0 2px 2px #f0efef;
+}
+
+.reproductor-detail .detail {
+  padding: 1rem;
+}
+
+.results {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.card {
+  width: 8rem;
+  box-shadow: 0 0 1px 1px #393939;
+  border-radius: 5px;
+}
+
+.card .image {
+  height: 8rem;
+  width: 100%;
+  object-fit: cover;
+  box-shadow: 0 0 1px 1px #393939;
+}
+.card .description {
+  padding: 0 .5rem .5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
