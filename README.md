@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Proyecto de integración
 
 ## React
@@ -173,6 +172,3 @@ Manejo de errores
 - Form
   Controlled component
 - Composición de componentes
-=======
-# SAGA
->>>>>>> 58514acc81e55c3b06c6e2a5d3d61d701c92c1a6
