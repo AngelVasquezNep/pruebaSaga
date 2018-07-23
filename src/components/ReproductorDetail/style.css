@@ -1,0 +1,25 @@
+.reproductor-detail {
+  width: 100%;
+  display: flex;
+  margin: 1rem 0;
+  box-shadow: 0 0 2px 2px #f0efef;
+  background-position: 50%;
+  background-size: cover;
+}
+
+.reproductor-detail .image {
+  width: 200px;
+  height: 200px;
+  box-shadow: 0 0 2px 2px #f0efef;
+  object-fit: cover;
+}
+
+.reproductor-detail .detail {
+  padding: 0 1rem;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #f0efef;
+}
+.reproductor-detail .detail p {
+  margin: 0.5rem;
+}

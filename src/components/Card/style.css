@@ -1,0 +1,24 @@
+.card {
+  width: 8rem;
+  box-shadow: 0 0 1px 1px #393939;
+  border-radius: 5px;
+  margin: 0.5rem;
+}
+
+.card .image {
+  height: 8rem;
+  width: 100%;
+  object-fit: cover;
+  box-shadow: 0 0 1px 1px #393939;
+}
+.card .description {
+  padding: 0 0.5rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.card.selected {
+  box-shadow: 0 0 2px 2px #1dd;
+}

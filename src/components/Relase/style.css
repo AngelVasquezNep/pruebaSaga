@@ -1,0 +1,10 @@
+.relase {
+  height: 100%;
+  width: 250px;
+  box-shadow: 2px 0 1px 0px #393939;
+  text-align: center;
+}
+
+.relase img {
+  width: 100%;
+}

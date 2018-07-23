@@ -1,0 +1,25 @@
+.btn {
+  border: none;
+  border: 1px solid #333333;
+  outline: none;
+  border-radius: 5px;
+  background: #fff;
+  margin: 0 .5rem;
+  padding: .5rem;
+  cursor: pointer;
+  transition: all .3s;
+  outline: none;
+}
+
+.btn:focus {
+  box-shadow: 0 0 1px 1px #1ff;
+}
+.btn:hover {
+  transform: translateY(-.1rem);
+  background-color: #1ff;
+  box-shadow: 0 2px .5px 0px #333333;
+}
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 0px 0px 0px #333333;
+}
