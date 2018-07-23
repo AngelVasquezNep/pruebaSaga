@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
 import "./style.css";
 import Button from "../Button";
 
@@ -14,6 +16,12 @@ class SearchForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    this.props.dispatch({
+      type: "SEARCH_SONG",
+      payload: {
+        nameSong: event.target.search.value
+      }
+    });
     this.props.handleSubmit({ value: event.target.search.value });
   };
 
@@ -37,4 +45,4 @@ class SearchForm extends Component {
   }
 }
 
-export default SearchForm;
+export default connect()(SearchForm);

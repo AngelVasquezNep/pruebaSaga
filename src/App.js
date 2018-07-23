@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import DocumentTitle from "react-document-title";
+import { connect } from "react-redux";
+
 import "./App.css";
 
 import guitar from "./images/guitar.jpg";
@@ -19,14 +21,14 @@ class App extends Component {
   handleSubmit = ({ value }) => {
     if (value !== "") {
       apiMusic(value).then(r => {
-        console.log(r.tracks.items);
         this.setState({ results: r.tracks.items });
       });
     }
   };
 
   render() {
-    const { results, trackSound } = this.state;
+    // const { trackSound } = this.state;
+    const { results, trackSound } = this.props;
     return (
       <DocumentTitle title={trackSound ? trackSound.name : "Music"}>
         <main className="App">
@@ -60,7 +62,13 @@ class App extends Component {
                         imageSrc={track.album.images[0].url}
                         title={track.name}
                         key={index}
-                        handleClick={() => this.setState({ trackSound: track })}
+                        // handleClick={() => this.setState({ trackSound: track })}
+                        handleClick={() =>
+                          this.props.dispatch({
+                            type: "SELECTED_TRACK",
+                            payload: { trackSound: track }
+                          })
+                        }
                       />
                     ) : null
                 )
@@ -92,4 +100,12 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state, props) => {
+  return {
+    nameSong: state.course.nameSong,
+    results: state.course.tracks,
+    trackSound: state.course.trackSound
+  };
+};
+
+export default connect(mapStateToProps)(App);

@@ -1,38 +1,21 @@
-import { delay } from 'redux-saga'
-import { put, call, takeLatest } from 'redux-saga/effects'
-import { tracksActionsTypes, tracksActionsCreate } from '../reducers/tracks'
+import { put, call, takeLatest } from "redux-saga/effects";
+import { apiMusic } from "../services";
 
-export function* incrementAsync() {
-  yield delay(3000)
-  yield put({ type: 'HOLA_ASYNC', payload: { msg: 'HOLA DESDE SAGAS' } })
-}
-export function* holaSaga() {
-  yield console.log("Hola Init Saga")
-}
-// function* watchFetchData() {
-//   yield takeLatest(tracksActionsTypes.FETCH_TRACK_REQUEST, fetchTrackRequest)
-// }
 function* fetchTrackRequest({ query }) {
-  const response = yield call(fetchMusic, { query })
-  if(response.status === 200) {
-    yield put(tracksActionsCreate.fetchTrackSuccess(response.items))
+  const response = yield call(apiMusic, { query });
+  if (response) {
+    yield put({
+      type: "SEARCH_TRACK_SUCCESS",
+      payload: { tracks: response.tracks.items }
+    });
   } else {
-    yield put(tracksActionsCreate.fetchTrackFailure())
+    yield put({
+      type: "SEARCH_TRACK_ERROR",
+      payload: { error: "Fallamos" }
+    });
   }
 }
-const fetchMusic = ({ query }) => {
-  const urlData = `https://platzi-music-api.now.sh/search?type=track&query=${query}`
-  return fetch(urlData)
-    .then(res => res.json())
-    .then(json=>({
-      items: json.tracks.items,
-      status: 200
-    }))
-}
+
 export default function* rootSaga() {
-  yield takeLatest(tracksActionsTypes.FETCH_TRACK_REQUEST, fetchTrackRequest)
-  // yield all([
-  //   holaSaga(),
-  //   watchFetchData()
-  // ])
+  yield takeLatest("SEARCH_SONG", fetchTrackRequest);
 }
