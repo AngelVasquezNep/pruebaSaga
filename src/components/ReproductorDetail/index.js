@@ -11,7 +11,7 @@ export default ({ image, title, artists, album }) => {
       <div className="detail">
         <p>Título: {title} </p>
         <p>Artistas:</p>
-        <ul>{artists.map(a => <li>{a.name}</li>)}</ul>
+        <ul>{artists.map((a, index) => <li key={index}>{a.name}</li>)}</ul>
         <p>Albúm: {album}</p>
       </div>
     </div>

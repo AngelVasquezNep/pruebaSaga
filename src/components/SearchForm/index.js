@@ -22,7 +22,6 @@ class SearchForm extends Component {
         nameSong: event.target.search.value
       }
     });
-    this.props.handleSubmit({ value: event.target.search.value });
   };
 
   render() {

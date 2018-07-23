@@ -9,7 +9,7 @@ function course(state = INITIAL_STATE, action) {
   switch (action.type) {
     case "SEARCH_SONG":
       return {
-        tracks: [],
+        ...state,
         error: null,
         nameSong: action.payload.nameSong
       };

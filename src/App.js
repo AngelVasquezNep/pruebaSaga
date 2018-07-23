@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import "./App.css";
 
 import guitar from "./images/guitar.jpg";
-import { apiMusic } from "./services";
 
 import Realse from "./components/Relase";
 import ReproductorDetail from "./components/ReproductorDetail";
@@ -18,16 +17,7 @@ class App extends Component {
     trackSound: null
   };
 
-  handleSubmit = ({ value }) => {
-    if (value !== "") {
-      apiMusic(value).then(r => {
-        this.setState({ results: r.tracks.items });
-      });
-    }
-  };
-
   render() {
-    // const { trackSound } = this.state;
     const { results, trackSound } = this.props;
     return (
       <DocumentTitle title={trackSound ? trackSound.name : "Music"}>
@@ -42,7 +32,7 @@ class App extends Component {
           )}
 
           <div className="content">
-            <SearchForm handleSubmit={this.handleSubmit} />
+            <SearchForm />
             {trackSound && (
               <ReproductorDetail
                 image={trackSound.album.images[0].url}
