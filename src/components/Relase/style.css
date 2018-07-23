@@ -3,6 +3,13 @@
   width: 250px;
   box-shadow: 2px 0 1px 0px #393939;
   text-align: center;
+  background-position: 50%;
+  background-size: cover;
+  color: #fff;
+}
+.relase .content {
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
 }
 
 .relase img {

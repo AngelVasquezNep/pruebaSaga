@@ -21,3 +21,7 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+
+.cover img {
+  width: 100%;
+}

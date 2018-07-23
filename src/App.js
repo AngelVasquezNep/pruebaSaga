@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import DocumentTitle from "react-document-title";
 import "./App.css";
 
+import guitar from "./images/guitar.jpg";
 import { apiMusic } from "./services";
 
 import Realse from "./components/Relase";
@@ -26,47 +28,66 @@ class App extends Component {
   render() {
     const { results, trackSound } = this.state;
     return (
-      <main className="App">
-        {trackSound && (
-          <Realse
-            title={trackSound.name}
-            artist={trackSound.artists}
-            ranking={trackSound.popularity}
-            image={trackSound.album.images[0].url}
-          />
-        )}
-
-        <div className="content">
-          <SearchForm handleSubmit={this.handleSubmit} />
-
-          {trackSound ? (
-            <ReproductorDetail
-              image={trackSound.album.images[0].url}
+      <DocumentTitle title={trackSound ? trackSound.name : "Music"}>
+        <main className="App">
+          {trackSound && (
+            <Realse
               title={trackSound.name}
-              artists={trackSound.artists}
-              album={trackSound.album.name}
+              artist={trackSound.artists}
+              ranking={trackSound.popularity}
+              image={trackSound.album.images[0].url}
             />
-          ) : (
-            <div>
-              <h2>Busca tu canción favorita</h2>
-            </div>
           )}
 
-          <div className="results">
-            {results &&
-              results.map((track, index) => (
-                <Card
-                  id={track.id}
-                  selected={trackSound ? trackSound.id : null}
-                  imageSrc={track.album.images[0].url}
-                  title={track.name}
-                  key={index}
-                  handleClick={() => this.setState({ trackSound: track })}
-                />
-              ))}
+          <div className="content">
+            <SearchForm handleSubmit={this.handleSubmit} />
+            {trackSound && (
+              <ReproductorDetail
+                image={trackSound.album.images[0].url}
+                title={trackSound.name}
+                artists={trackSound.artists}
+                album={trackSound.album.name}
+              />
+            )}
+            <div className="results">
+              {results ? (
+                results.map(
+                  (track, index) =>
+                    track.preview_url ? (
+                      <Card
+                        id={track.id}
+                        selected={trackSound ? trackSound.id : null}
+                        imageSrc={track.album.images[0].url}
+                        title={track.name}
+                        key={index}
+                        handleClick={() => this.setState({ trackSound: track })}
+                      />
+                    ) : null
+                )
+              ) : (
+                <div className="cover">
+                  <h2>Busca tu canción favorita</h2>
+                  <img src={guitar} alt="" />
+                </div>
+              )}
+            </div>
+            {trackSound && (
+              <audio
+                autoPlay
+                controls
+                src={trackSound.preview_url}
+                style={{
+                  position: "fixed",
+                  width: "100%",
+                  bottom: "0",
+                  right: "0",
+                  left: "0"
+                }}
+              />
+            )}
           </div>
-        </div>
-      </main>
+        </main>
+      </DocumentTitle>
     );
   }
 }
